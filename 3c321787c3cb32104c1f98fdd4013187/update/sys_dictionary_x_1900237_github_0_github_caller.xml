@@ -24,7 +24,7 @@
         <display>false</display>
         <dynamic_creation>false</dynamic_creation>
         <dynamic_creation_script/>
-        <dynamic_default_value/>
+        <dynamic_default_value><![CDATA[gs.getUserID();]]></dynamic_default_value>
         <dynamic_ref_qual/>
         <element>caller</element>
         <element_reference>false</element_reference>
