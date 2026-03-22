@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_documentation">
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>email</element>
+        <help/>
+        <hint/>
+        <label>Email</label>
+        <language>en</language>
+        <name>x_1900237_github_0_github</name>
+        <plural>Emails</plural>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-02-19 13:54:00</sys_created_on>
+        <sys_id>email_field_id_placeholder</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1900237_github_0_github.email</sys_name>
+        <sys_package display_value="GitHub_Integration" source="x_1900237_github_0">3c321787c3cb32104c1f98fdd4013187</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GitHub_Integration">3c321787c3cb32104c1f98fdd4013187</sys_scope>
+        <sys_update_name>sys_documentation_x_1900237_github_0_github_email_en</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-02-19 13:54:00</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+</record_update>
