@@ -3,24 +3,35 @@
         <active>true</active>
         <applies_extended>false</applies_extended>
         <condition/>
-        <description>Show/hide mobile_number field based on contact_type selection</description>
+        <description>Show/hide email and mobile_number fields based on contact_type selection</description>
         <field>contact_type</field>
         <global>true</global>
         <messages/>
-        <name>Contact Type Mobile Field Toggle</name>
+        <name>Contact Type Field Visibility Toggle</name>
         <order/>
         <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
     if (isLoading) {
+        // Hide both fields by default when form loads
+        g_form.setDisplay('email', false);
+        g_form.setDisplay('mobile_number', false);
+        g_form.clearValue('email');
+        g_form.clearValue('mobile_number');
         return;
     }
     
-    // Show mobile_number field only when contact_type is 'mobile'
-    if (newValue === 'mobile') {
-        g_form.showFieldMsg('mobile_number', '', 'info'); // Clear any existing messages
+    // Hide both fields first
+    g_form.setDisplay('email', false);
+    g_form.setDisplay('mobile_number', false);
+    g_form.clearValue('email');
+    g_form.clearValue('mobile_number');
+    
+    // Show appropriate field based on contact_type selection
+    if (newValue === 'email') {
+        g_form.setDisplay('email', true);
+        g_form.showFieldMsg('email', '', 'info'); // Clear any existing messages
+    } else if (newValue === 'mobile') {
         g_form.setDisplay('mobile_number', true);
-    } else {
-        g_form.setDisplay('mobile_number', false);
-        g_form.clearValue('mobile_number'); // Clear the value when hiding
+        g_form.showFieldMsg('mobile_number', '', 'info'); // Clear any existing messages
     }
 }]]></script>
         <sys_class_name>sys_script_client</sys_class_name>
