@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Populate user fields when caller is selected</description>
+        <field>caller</field>
+        <global>true</global>
+        <messages/>
+        <name>Caller Field User Lookup</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
+    if (isLoading) {
+        return;
+    }
+    
+    // Clear existing values first
+    g_form.clearValue('first_name');
+    g_form.clearValue('last_name');
+    g_form.clearValue('manager');
+    
+    if (!newValue) {
+        return;
+    }
+    
+    // Use script include to fetch user details
+    var userLookup = new x_1900237_github_0.UserLookup();
+    var result = userLookup.getUserDetails(newValue);
+    
+    if (result.success) {
+        // Populate the fields with user details
+        g_form.setValue('first_name', result.firstName);
+        g_form.setValue('last_name', result.lastName);
+        g_form.setValue('manager', result.manager);
+        
+        // Show success message briefly
+        g_form.addInfoMessage('User details populated: ' + result.firstName + ' ' + result.lastName);
+    } else {
+        // Show error message
+        g_form.addErrorMessage(result.message);
+        g_form.clearValue('caller'); // Clear the invalid selection
+    }
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-12 15:55:00</sys_created_on>
+        <sys_id>caller_onchange_12345678901234567890</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Caller Field User Lookup</sys_name>
+        <sys_package display_value="GitHub_Integration" source="x_1900237_github_0">3c321787c3cb32104c1f98fdd4013187</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GitHub_Integration">3c321787c3cb32104c1f98fdd4013187</sys_scope>
+        <sys_update_name>sys_script_client_caller_onchange</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-12 15:55:00</sys_updated_on>
+        <table>x_1900237_github_0_github</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view_name/>
+    </sys_script_client>
+</record_update>

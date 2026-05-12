@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1900237_github_0.UserLookup</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Fetches user details from sys_user table based on caller selection</description>
+        <name>UserLookup</name>
+        <script><![CDATA[var UserLookup = Class.create();
+UserLookup.prototype = {
+    initialize: function() {},
+    
+    getUserDetails: function(userId) {
+        if (!userId) {
+            return {
+                success: false,
+                message: "User ID is required"
+            };
+        }
+        
+        // Query sys_user table to get user details
+        var userGr = new GlideRecord('sys_user');
+        userGr.addQuery('sys_id', userId);
+        userGr.setLimit(1);
+        userGr.query();
+        
+        if (userGr.next()) {
+            return {
+                success: true,
+                firstName: userGr.getValue('first_name'),
+                lastName: userGr.getValue('last_name'),
+                manager: userGr.getValue('manager'),
+                email: userGr.getValue('email'),
+                message: "User details retrieved successfully"
+            };
+        } else {
+            return {
+                success: false,
+                message: "User not found"
+            };
+        }
+    },
+    
+    type: 'UserLookup'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-12 15:55:00</sys_created_on>
+        <sys_id>user_lookup_12345678901234567890</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>UserLookup</sys_name>
+        <sys_package display_value="GitHub_Integration" source="x_1900237_github_0">3c321787c3cb32104c1f98fdd4013187</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GitHub_Integration">3c321787c3cb32104c1f98fdd4013187</sys_scope>
+        <sys_update_name>sys_script_include_user_lookup</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-12 15:55:00</sys_updated_on>
+    </sys_script_include>
+</record_update>
