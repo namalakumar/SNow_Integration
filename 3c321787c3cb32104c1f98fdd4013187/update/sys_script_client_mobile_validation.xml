@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Validates mobile number field on form change</description>
+        <field>mobile_number</field>
+        <global>true</global>
+        <messages/>
+        <name>Mobile Number Validation</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
+    if (isLoading) {
+        return;
+    }
+    
+    // Only allow numbers and limit to 10 characters
+    var cleanNumber = newValue.replace(/[^0-9]/g, '').substring(0, 10);
+    
+    // Update the field with cleaned value
+    g_form.setValue('mobile_number', cleanNumber);
+    
+    // Validate the mobile number
+    var validation = new x_1900237_github_0.MobileNumberValidation().validateMobileNumber(cleanNumber);
+    
+    if (!validation.valid) {
+        g_form.showFieldMsg('mobile_number', validation.message, 'error');
+        g_form.clearValue('mobile_number');
+    } else {
+        g_form.clearFieldMsg('mobile_number');
+    }
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-12 14:25:00</sys_created_on>
+        <sys_id>mobile_client_validation_12345678901234567890</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Mobile Number Validation</sys_name>
+        <sys_package display_value="GitHub_Integration" source="x_1900237_github_0">3c321787c3cb32104c1f98fdd4013187</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GitHub_Integration">3c321787c3cb32104c1f98fdd4013187</sys_scope>
+        <sys_update_name>sys_script_client_mobile_validation</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-12 14:25:00</sys_updated_on>
+        <table>x_1900237_github_0_github</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view_name/>
+    </sys_script_client>
+</record_update>
